@@ -24,8 +24,10 @@ public class StudentService {
     public List<StudentDto> getAllStudents() {
 
         List<StudentDao> all = studentRepository.findAll();
-        return all.stream().map(studentDao -> mapStudentDaoToDto(studentDao)
-        ).collect(Collectors.toList());
+        return all.stream()
+                .filter(studentDao -> studentDao.isStudentActivity())
+                .map(studentDao -> mapStudentDaoToDto(studentDao)
+                ).collect(Collectors.toList());
     }
 
     private static StudentDto mapStudentDaoToDto(StudentDao studentDao) {
@@ -48,9 +50,11 @@ public class StudentService {
 
     public StudentDto getAllStudentsByUid(String uid) {
         var studentDao = studentRepository.findAllByStudentUid(UUID.fromString(uid));
-        if (studentDao.isEmpty())
+        Optional<StudentDao> studentDao2 = studentDao.filter(studentDao1 -> studentDao1.isStudentActivity());
+        if (studentDao2.isEmpty()) {
             return null;
-        return mapStudentDaoToDto(studentDao.get());
+        }
+        return studentDao2.map(StudentService::mapStudentDaoToDto).get();
     }
 
 
@@ -60,3 +64,8 @@ public class StudentService {
         return studentDaoStream.map(studentDao -> mapStudentDaoToDto(studentDao)).collect(Collectors.toList());
     }
 }
+
+
+
+
+

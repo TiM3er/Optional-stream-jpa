@@ -20,23 +20,23 @@ public class BootstrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        StudentDao studentDao = new StudentDao(UUID.randomUUID(), "Kuba", "Nitecki");
+        StudentDao studentDao = new StudentDao(UUID.randomUUID(), "Kuba", "Nitecki", false);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.fromString("a2cda82b-4bee-46f9-86a7-db56b7b11d74"), "Dario", "Nie do mnie tak, nie do mnie");
+        studentDao = new StudentDao(UUID.fromString("a2cda82b-4bee-46f9-86a7-db56b7b11d74"), "Dario", "Nie do mnie tak, nie do mnie", true);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Dario", "Napił by się herbatki");
+        studentDao = new StudentDao(UUID.randomUUID(), "Dario", "Napił by się herbatki", true);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Jacek", "Powinno być inaczej");
+        studentDao = new StudentDao(UUID.randomUUID(), "Jacek", "Powinno być inaczej", false);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Władek", "Stryj");
+        studentDao = new StudentDao(UUID.randomUUID(), "Władek", "Stryj", false);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Paulina", "Dupa");
+        studentDao = new StudentDao(UUID.randomUUID(), "Paulina", "Dupa", true);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Maria", "Pazińska");
+        studentDao = new StudentDao(UUID.randomUUID(), "Maria", "Pazińska", true);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Mariusz", "Fajkowski");
+        studentDao = new StudentDao(UUID.randomUUID(), "Mariusz", "Fajkowski", true);
         studentRepository.save(studentDao);
-        studentDao = new StudentDao(UUID.randomUUID(), "Marek", "Żakowski");
+        studentDao = new StudentDao(UUID.randomUUID(), "Marek", "Żakowski", true);
         studentRepository.save(studentDao);
         studentRepository.findAll().forEach(studentDao1 -> log.info("{}", studentDao1.printClass()));
     }

@@ -18,9 +18,11 @@ public class StudentDao implements BasicDao {
 
     private String studentName;
     private String studentSurname;
+    private boolean studentActivity;
 
     public StudentDao() {
         this.studentUid = UUID.randomUUID();
+
     }
 
     @Override
